@@ -36,3 +36,80 @@ print(r_area)
 
 t_area = tri_area(10, 10)
 print(t_area)
+
+class User:
+    def __init__(self,auth):
+        self.is_authenticated = auth
+
+user = User(auth=False)
+
+r_area = rect_area(user, 10, 10)
+print(r_area)
+
+t_area = tri_area(user, 10, 10)
+print(t_area)
+
+
+def check_integer(func):
+    def decorated(user, width, height):
+        if width >= 0 and height >= 0:
+            return func(user, width, height)
+        else:
+            raise ValueError('Input must be positive value')
+    return decorated
+
+def login_required(func):
+    def decorated(user, width, height):
+        if user.is_authenticated:
+            return func(user, width, height)
+        else:
+            raise PermissionError('Login required')
+    return decorated
+
+@check_integer
+@login_required
+def rect_area(user, width, height):
+    return width * height
+
+@check_integer
+@login_required
+def tri_area(user, width, heigth):
+    return width * heigth/2
+
+
+
+# 전달되는 모든 인자를 선택적 키워드 인자로 변경
+def check_integer(func):
+    def decorated(**kwargs):
+        if kwargs['width'] >= 0 and kwargs >= 0:
+            return func(**kwargs)
+        else:
+            raise ValueError('Input must be positive value')
+    return decorated
+
+def login_required(func):
+    def decorated(**kwargs):
+        if kwargs['user'].is_authenticated:
+            return func(**kwargs)
+        else:
+            raise PermissionError('Login required')
+    return decorated
+
+@check_integer
+@login_required
+def rect_area(**kwargs):
+    return kwargs['width'] * kwargs['height']
+
+@check_integer
+@login_required
+def tri_area(**kwargs):
+    return kwargs['width'] * kwargs['height'] / 2
+
+
+user = User(auth=False)
+
+r_area = rect_area(user=user, width=10, height=10)
+print(r_area)
+
+t_area = tri_area(user=user, width=10, height=10)
+print(t_area)
