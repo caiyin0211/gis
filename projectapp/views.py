@@ -12,7 +12,7 @@ class ProjectCreateView(CreateView):
     model = Project
     form_class = ProjectCreationForm
     success_url = reverse_lazy('articleapp:list')
-    template_name = 'profileapp/create.html'
+    template_name = 'projectapp/create.html'
 
 class ProjectDetailView(DetailView):
     model = Project
