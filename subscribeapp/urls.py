@@ -8,5 +8,4 @@ urlpatterns = [
     path('subscribe/<int:project_pk>', SubscriptionView.as_view(), name='subscribe'),
 
 
-
 ]
