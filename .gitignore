@@ -84,3 +84,8 @@ __pycache__/
 media/
 
 staticfiles/
+
+caiyin.pem
+
+caiyin_gcp
+caiyin_gcp.pub
