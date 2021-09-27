@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+
+  nginx:
+    image: nginx:1.19.5
+    ports:
+      - 80:80
+    networks:
+      - caiyin_network
+    volumes:
+      - /home/caiyin0211/nginx.conf:/etc/nginx/nginx.conf
+      - caiyin_static:/data/static
+      - caiyin_media:/data/media
+
+  django:
+    image: caiyin_django:3
+    networks:
+      - caiyin_network
+    volumes:
+      - caiyin_static:/home/gis/staticfiles/
+      - caiyin_media:/home/gis/media
+
+networks:
+  caiyin_network:
+
+volumes:
+  caiyin_static:
+  caiyin_media:
