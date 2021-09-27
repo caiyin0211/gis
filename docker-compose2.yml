@@ -20,6 +20,8 @@ services:
     volumes:
       - caiyin_static:/home/gis/staticfiles/
       - caiyin_media:/home/gis/media
+    secrets:
+      - DJANGO_SECRET_KEY
 
   mariadb:
     image: mariadb:10.5
@@ -40,3 +42,7 @@ volumes:
   caiyin_static:
   caiyin_media:
   caiyin_mariadb:
+
+secrets:
+  DJANGO_SECRET_KEY:
+    external: true

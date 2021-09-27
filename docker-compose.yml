@@ -46,4 +46,3 @@ volumes:
 secrets:
   DJANGO_SECRET_KEY:
     external: true
-
