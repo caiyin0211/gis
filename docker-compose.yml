@@ -14,12 +14,26 @@ services:
       - caiyin_media:/data/media
 
   django:
-    image: caiyin_django:3
+    image: caiyin_django:4
     networks:
       - caiyin_network
     volumes:
       - caiyin_static:/home/gis/staticfiles/
       - caiyin_media:/home/gis/media
+    secrets:
+      - DJANGO_SECRET_KEY
+
+  mariadb:
+    image: mariadb:10.5
+    networks:
+      - caiyin_network
+    volumes:
+      - caiyin_mariadb:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: password1234
+      MARIADB_DATABASE: django
+      MARIADB_USER: django
+      MARIADB_PASSWORD: password1234
 
 networks:
   caiyin_network:
@@ -27,3 +41,9 @@ networks:
 volumes:
   caiyin_static:
   caiyin_media:
+  caiyin_mariadb:
+
+secrets:
+  DJANGO_SECRET_KEY:
+    external: true
+
