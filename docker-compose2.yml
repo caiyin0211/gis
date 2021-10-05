@@ -12,6 +12,7 @@ services:
       - /home/caiyin0211/nginx.conf:/etc/nginx/nginx.conf
       - caiyin_static:/data/static/
       - caiyin_media:/data/media/
+      - caiyin_log:/var/log/nginx/
 
   django:
     image: caiyin_django:5
@@ -48,6 +49,8 @@ volumes:
   caiyin_static:
   caiyin_media:
   caiyin_mariadb:
+  caiyin_log:
+
 
 secrets:
   DJANGO_SECRET_KEY:
