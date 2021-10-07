@@ -17,7 +17,7 @@ services:
   goaccess:
     image: allinurl/goaccess:1.5.2
     volumes:
-      - gis_log:/var/log/nginx/
+      - caiyin_log:/var/log/nginx/
     ports:
       - 7890:7890
     command: /var/log/nginx/gis_access.log -o /var/log/nginx/report.html --log-format=COMBINED --real-time-html
@@ -58,7 +58,6 @@ volumes:
   caiyin_media:
   caiyin_mariadb:
   caiyin_log:
-  gis_log:
 
 secrets:
   DJANGO_SECRET_KEY:
